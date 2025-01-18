@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
 
@@ -17,6 +16,10 @@ public class Employee {
 
     private String name;
     private String address;
+
+    public Employee() {
+
+    }
 
     public Long getId() {
         return id;

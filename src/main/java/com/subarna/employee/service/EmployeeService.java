@@ -3,6 +3,7 @@ package com.subarna.employee.service;
 import com.subarna.employee.entity.Employee;
 import com.subarna.employee.error.EmployeeNotFoundException;
 import com.subarna.employee.mapper.EmployeeMapper;
+import com.subarna.employee.model.EmployeeRequest;
 import com.subarna.employee.model.EmployeeResponse;
 import com.subarna.employee.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,11 @@ public class EmployeeService {
                     .map(employeeMapper::toDto)
                     .toList();
         }
+    }
+
+    public String createEmployee(EmployeeRequest employeeRequest) {
+        Employee employee = employeeMapper.toEntity(employeeRequest);
+        employeeRepository.save(employee);
+        return "Employee created successfully";
     }
 }

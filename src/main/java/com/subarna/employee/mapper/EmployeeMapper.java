@@ -1,6 +1,7 @@
 package com.subarna.employee.mapper;
 
 import com.subarna.employee.entity.Employee;
+import com.subarna.employee.model.EmployeeRequest;
 import com.subarna.employee.model.EmployeeResponse;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +14,14 @@ public class EmployeeMapper {
                 employee.getName(),
                 employee.getAddress()
         );
+    }
+
+    public Employee toEntity(EmployeeRequest employeeRequest) {
+        Employee employee = new Employee();
+
+        employee.setAddress(employeeRequest.getEmpAddress());
+        employee.setName(employeeRequest.getEmpName());
+
+        return employee;
     }
 }
