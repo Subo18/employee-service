@@ -3,6 +3,7 @@ package com.subarna.employee.controller;
 import com.subarna.employee.model.EmployeeRequest;
 import com.subarna.employee.model.EmployeeResponse;
 import com.subarna.employee.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public String createEmployee(@RequestBody EmployeeRequest employeeRequest) {
+    public String createEmployee(@RequestBody @Valid EmployeeRequest employeeRequest) {
         return employeeService.createEmployee(employeeRequest);
     }
 }
