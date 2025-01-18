@@ -1,6 +1,7 @@
 package com.subarna.employee.service;
 
 import com.subarna.employee.entity.Employee;
+import com.subarna.employee.error.EmployeeNotFoundException;
 import com.subarna.employee.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class EmployeeService {
     public List<Employee> getEmployeeDetails(Long id) {
         if(id != null) {
             Employee employee = employeeRepository.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Employee not found"));
+                    .orElseThrow(() -> new EmployeeNotFoundException("Employee not found"));
             return List.of(employee);
         }
         else {
