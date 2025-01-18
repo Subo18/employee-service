@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 public class EmployeeRequest {
 
     @NotNull
@@ -20,6 +19,10 @@ public class EmployeeRequest {
     @NotBlank(message = "Address is mandatory")
     @Size(max = 10, message = "Address should not exceed 10 characters")
     private String empAddress;
+
+    public EmployeeRequest() {
+
+    }
 
     public String getEmpName() {
         return empName;
