@@ -1,6 +1,6 @@
 package com.subarna.employee.controller;
 
-import com.subarna.employee.entity.Employee;
+import com.subarna.employee.model.EmployeeResponse;
 import com.subarna.employee.service.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<Employee> getEmployee(
+    public List<EmployeeResponse> getEmployee(
             @RequestParam(value = "employeeId", required = false) Long id)
     {
         return employeeService.getEmployeeDetails(id);
