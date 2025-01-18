@@ -26,21 +26,21 @@ public class RestExceptionHandler {
     @ResponseBody
     public ErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         var errorMessage = exception.getBindingResult().getFieldErrors()
-            .stream()
-            .sorted(Comparator.comparing(FieldError::getField))
-            .map(error -> error.getField() + " : " + error.getDefaultMessage())
-            .collect(Collectors.joining(" , "));
+                .stream()
+                .sorted(Comparator.comparing(FieldError::getField))
+                .map(error -> error.getField() + " : " + error.getDefaultMessage())
+                .collect(Collectors.joining(" , "));
         return new ErrorResponse(
-            errorMessage,
-            HttpStatus.BAD_REQUEST
+                errorMessage,
+                HttpStatus.BAD_REQUEST
         );
     }
 
     @ExceptionHandler(value = {Exception.class})
     public ResponseEntity<ErrorResponse> handleInternalException(Exception exception) {
         ErrorResponse errorResponse = new ErrorResponse(
-            exception.getMessage(),
-            HttpStatus.INTERNAL_SERVER_ERROR
+                exception.getMessage(),
+                HttpStatus.INTERNAL_SERVER_ERROR
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }

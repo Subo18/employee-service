@@ -1,12 +1,8 @@
 package com.subarna.employee.model;
 
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 public class EmployeeRequest {
 
@@ -40,7 +36,7 @@ public class EmployeeRequest {
         this.empAddress = empAddress;
     }
 
-    public EmployeeRequest( String empName, String empAddress) {
+    public EmployeeRequest(String empName, String empAddress) {
         this.empName = empName;
         this.empAddress = empAddress;
     }

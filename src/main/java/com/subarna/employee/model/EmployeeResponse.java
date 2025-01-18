@@ -1,10 +1,5 @@
 package com.subarna.employee.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 public class EmployeeResponse {
     private Long empId;
     private String empName;

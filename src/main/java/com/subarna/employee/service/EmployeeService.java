@@ -23,11 +23,10 @@ public class EmployeeService {
 
 
     public List<EmployeeResponse> getEmployeeDetails(Long id) {
-        if(id != null) {
+        if (id != null) {
             Employee employee = findEmployee(id);
             return List.of(employeeMapper.toDto(employee));
-        }
-        else {
+        } else {
             return employeeRepository.findAll()
                     .stream()
                     .map(employeeMapper::toDto)
