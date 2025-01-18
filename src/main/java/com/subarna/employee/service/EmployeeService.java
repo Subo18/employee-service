@@ -24,8 +24,7 @@ public class EmployeeService {
 
     public List<EmployeeResponse> getEmployeeDetails(Long id) {
         if(id != null) {
-            Employee employee = employeeRepository.findById(id)
-                    .orElseThrow(() -> new EmployeeNotFoundException("Employee not found"));
+            Employee employee = findEmployee(id);
             return List.of(employeeMapper.toDto(employee));
         }
         else {
@@ -36,9 +35,25 @@ public class EmployeeService {
         }
     }
 
+    private Employee findEmployee(Long id) {
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found"));
+    }
+
     public String createEmployee(EmployeeRequest employeeRequest) {
         Employee employee = employeeMapper.toEntity(employeeRequest);
         employeeRepository.save(employee);
         return "Employee created successfully";
+    }
+
+    public String updateEmployee(Long empId, EmployeeRequest employeeRequest) {
+        Employee employee = findEmployee(empId);
+
+        employee.setName(employeeRequest.getEmpName());
+        employee.setAddress(employeeRequest.getEmpAddress());
+
+        employeeRepository.save(employee);
+
+        return "Employee updated successfully";
     }
 }

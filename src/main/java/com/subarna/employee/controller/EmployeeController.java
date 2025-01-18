@@ -29,4 +29,12 @@ public class EmployeeController {
     public String createEmployee(@RequestBody @Valid EmployeeRequest employeeRequest) {
         return employeeService.createEmployee(employeeRequest);
     }
+
+    @PutMapping("/{id}")
+    public String updateEmployee(
+            @PathVariable(name ="id" ) Long empId,
+            @RequestBody @Valid EmployeeRequest employeeRequest
+    ) {
+        return employeeService.updateEmployee(empId,employeeRequest);
+    }
 }
