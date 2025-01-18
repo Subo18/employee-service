@@ -35,11 +35,6 @@ public class EmployeeService {
         }
     }
 
-    private Employee findEmployee(Long id) {
-        return employeeRepository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found"));
-    }
-
     public String createEmployee(EmployeeRequest employeeRequest) {
         Employee employee = employeeMapper.toEntity(employeeRequest);
         employeeRepository.save(employee);
@@ -55,5 +50,18 @@ public class EmployeeService {
         employeeRepository.save(employee);
 
         return "Employee updated successfully";
+    }
+
+    public String deleteEmployee(Long empId) {
+        Employee employee = findEmployee(empId);
+
+        employeeRepository.delete(employee);
+
+        return "Employee deleted successfully";
+    }
+
+    private Employee findEmployee(Long id) {
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found"));
     }
 }
